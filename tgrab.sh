@@ -2,7 +2,7 @@
 
 # Function to show error messages in bold red on white background with error icon
 show_error() {
-    echo -e "\e[1;41;37m  $1\e[0m"  # Using 
+    echo -e "\e[1;41;37m  $1\e[0m"  # Using
 }
 
 # Function to check if xclip is installed
@@ -79,19 +79,19 @@ end_line=$((current_prompt - 2))
 if [[ $start_line -le $end_line ]]; then
     # Extract the content
     output=$(echo "$tmux_content" | sed -n "${start_line},${end_line}p")
-    
+
     # Check if output is empty
     if [[ -z "$output" ]]; then
         show_error "󰉘 Nothing to copy - no output found between prompts"  # Empty icon
         exit 1
     fi
-    
+
     # Copy to clipboard
     echo "$output" | xclip -selection clipboard -i
-    
+
     # Show feedback with clipboard icon
-    echo "󰅌 Copied to clipboard:"  # Clipboard icon
-    echo "$output"
+    echo "󰅌 Copied to clipboard"  # Clipboard icon
+    # echo "$output" # uncomment if you want to also display what was copied to the clipboard
 else
     show_error "󰉘 Nothing to copy - no output found between prompts"  # Empty icon
     exit 1
